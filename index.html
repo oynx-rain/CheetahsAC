@@ -655,7 +655,7 @@ function showSlides(n) {
 
         // Creates the thumbnail images inside filmstrip.
         for (i = 1; i <= number_of_images; i++) {
-            thisimage = images_folder + ('0' + i.toString()).slice(-2) + ".jpg";
+            thisimage = images_folder + ('0' + i.toString()).slice(-2) + ".jpg"+ ".JPG";
             console.log("Loading image: " + thisimage); // Debugging line
             document.getElementById('filmstrip').innerHTML += "<img src='" + thisimage + "' onclick='show(" + i + ")'>";
         }
@@ -664,7 +664,7 @@ function showSlides(n) {
         show(1);
 
         function slide(x) {
-            var currentimage = document.getElementById('slideshow').style.backgroundImage.split('.jpg');
+            var currentimage = document.getElementById('slideshow').style.backgroundImage.split('.jpg', '.JPG');
             var i = parseInt(currentimage[0].slice(-2)) + x;
             i = i > number_of_images ? 1 : i;
             i = i < 1 ? number_of_images : i;
@@ -672,7 +672,7 @@ function showSlides(n) {
         }
 
         function show(i) {
-            thisimage = images_folder + ('0' + i.toString()).slice(-2) + ".jpg";
+            thisimage = images_folder + ('0' + i.toString()).slice(-2) + ".jpg" + ".JPG";
             console.log("Showing image: " + thisimage); // Debugging line
             document.getElementById('slideshow').style.backgroundImage = "url('" + thisimage + "')";
 
