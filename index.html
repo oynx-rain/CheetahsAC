@@ -649,47 +649,50 @@ function showSlides(n) {
   t = setTimeout(showSlides, 5000);
 }
 		 //Gallery Slideshow
-		 var number_of_images = 12;
-        var images_folder = 'Gallery/';
-        var thisimage = '';
+	var number_of_images = 12;
+var images_folder = 'Gallery/';
+var thisimage = '';
+var extensions = ['jpg', 'JPG'];
 
-        // Creates the thumbnail images inside filmstrip.
-        for (i = 1; i <= number_of_images; i++) {
-            thisimage = images_folder + ('0' + i.toString()).slice(-2) + ".jpg";
-            console.log("Loading image: " + thisimage); // Debugging line
-            document.getElementById('filmstrip').innerHTML += "<img src='" + thisimage + "' onclick='show(" + i + ")'>";
-        }
+// Creates the thumbnail images inside filmstrip.
+for (i = 1; i <= number_of_images; i++) {
+    extensions.forEach(ext => {
+        thisimage = images_folder + ('0' + i.toString()).slice(-2) + '.' + ext;
+        console.log("Loading image: " + thisimage); // Debugging line
+        document.getElementById('filmstrip').innerHTML += "<img src='" + thisimage + "' onclick='show(" + i + ")'>";
+    });
+}
 
-        // Go to first image
-        show(1);
+// Go to first image
+show(1);
 
-        function slide(x) {
-            var currentimage = document.getElementById('slideshow').style.backgroundImage.split('.jpg');
-            var i = parseInt(currentimage[0].slice(-2)) + x;
-            i = i > number_of_images ? 1 : i;
-            i = i < 1 ? number_of_images : i;
-            show(i);
-        }
+function slide(x) {
+    var currentimage = document.getElementById('slideshow').style.backgroundImage.split('.jpg')[0].split('.JPG')[0];
+    var i = parseInt(currentimage.slice(-2)) + x;
+    i = i > number_of_images ? 1 : i;
+    i = i < 1 ? number_of_images : i;
+    show(i);
+}
 
-        function show(i) {
-            thisimage = images_folder + ('0' + i.toString()).slice(-2) + ".jpg";
-            console.log("Showing image: " + thisimage); // Debugging line
-            document.getElementById('slideshow').style.backgroundImage = "url('" + thisimage + "')";
-
-            var filmstrip = document.getElementById("filmstrip");
-            var thumbs = filmstrip.getElementsByTagName("img");
-            for (x = 0; x < thumbs.length; x++) {
-                thumbs[x].className = (x == i - 1) ? 'bordered' : '';
-            }
-
-            filmstrip.style.justifyContent = 'center';
-            if (i <= number_of_images / 3) {
-                filmstrip.style.justifyContent = 'flex-start';
-            }
-            if (i >= number_of_images - (number_of_images / 3)) {
-                filmstrip.style.justifyContent = 'flex-end';
-            }
-        }
+function show(i) {
+    var found = false;
+    extensions.forEach(ext => {
+        var imgSrc = images_folder + ('0' + i.toString()).slice(-2) + '.' + ext;
+        var img = new Image();
+        img.src = imgSrc;
+        img.onload = function() {
+            document.getElementById('slideshow').style.backgroundImage = "url('" + imgSrc + "')";
+            document.querySelectorAll('#filmstrip img').forEach(imgElem => {
+                imgElem.classList.remove('bordered');
+            });
+            document.querySelector("#filmstrip img[src='" + imgSrc + "']").classList.add('bordered');
+            found = true;
+        };
+    });
+    if (!found) {
+        console.error("Image not found: " + i);
+    }
+}
 
 		</script>
 
