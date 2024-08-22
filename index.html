@@ -652,47 +652,51 @@ function showSlides(n) {
 	var number_of_images = 12;
 var images_folder = 'Gallery/';
 var thisimage = '';
-var extensions = ['jpg', 'JPG'];
 
 // Creates the thumbnail images inside filmstrip.
 for (i = 1; i <= number_of_images; i++) {
-    extensions.forEach(ext => {
-        thisimage = images_folder + ('0' + i.toString()).slice(-2) + '.' + ext;
-        console.log("Loading image: " + thisimage); // Debugging line
-        document.getElementById('filmstrip').innerHTML += "<img src='" + thisimage + "' onclick='show(" + i + ")'>";
-    });
+    // Create the image path with both .jpg and .JPG extensions
+    var jpgImage = images_folder + ('0' + i.toString()).slice(-2) + ".jpg";
+    var JPGImage = images_folder + ('0' + i.toString()).slice(-2) + ".JPG";
+
+    // Check if the image exists by testing one of the extensions (this assumes all images exist as either .jpg or .JPG)
+    thisimage = jpgImage;
+
+    // Adding thumbnail with a check for either .jpg or .JPG
+    document.getElementById('filmstrip').innerHTML += "<img src='" + jpgImage + "' onclick='show(" + i + ")'>" + "<img src='" + JPGImage + "' onclick='show(" + i + ")'>";
 }
 
-// Go to first image
+// Go to the first image
 show(1);
 
 function slide(x) {
-    var currentimage = document.getElementById('slideshow').style.backgroundImage.split('.jpg')[0].split('.JPG')[0];
-    var i = parseInt(currentimage.slice(-2)) + x;
+    // Get the current image and its extension
+    var currentimage = document.getElementById('slideshow').style.backgroundImage.split('.');
+    var extension = currentimage[1].split('"')[0];  // either jpg or JPG
+    var i = parseInt(currentimage[0].slice(-2)) + x;
+
     i = i > number_of_images ? 1 : i;
     i = i < 1 ? number_of_images : i;
-    show(i);
+
+    // Show the image with the same extension
+    show(i, extension);
 }
 
-function show(i) {
-    var found = false;
-    extensions.forEach(ext => {
-        var imgSrc = images_folder + ('0' + i.toString()).slice(-2) + '.' + ext;
-        var img = new Image();
-        img.src = imgSrc;
-        img.onload = function() {
-            document.getElementById('slideshow').style.backgroundImage = "url('" + imgSrc + "')";
-            document.querySelectorAll('#filmstrip img').forEach(imgElem => {
-                imgElem.classList.remove('bordered');
-            });
-            document.querySelector("#filmstrip img[src='" + imgSrc + "']").classList.add('bordered');
-            found = true;
-        };
+function show(i, extension = "jpg") {
+    // If the extension is not provided, default to .jpg
+    var imagePath = images_folder + ('0' + i.toString()).slice(-2) + "." + extension;
+
+    // Try to set the background image
+    document.getElementById('slideshow').style.backgroundImage = "url('" + imagePath + "')";
+    
+    // Highlight the corresponding thumbnail (considering both .jpg and .JPG)
+    var thumbnails = document.querySelectorAll('#filmstrip img');
+    thumbnails.forEach(function(thumb) {
+        thumb.classList.remove('bordered');
     });
-    if (!found) {
-        console.error("Image not found: " + i);
-    }
+    thumbnails[i - 1].classList.add('bordered');
 }
+
 
 		</script>
 
