@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Danielle Sampson">
+	<meta name="description" content="Cheetahs Athletic Club (Formally known as Valencia Athletic Club) is a youth track athletic group based in Valencia, Trinidad and Tobago">
+	<meta name="keywords" content=" about, Cheetahs, Athletic, Club, Team, Valencia, Trinidad, Tobago, Track, Athletics, Youth, Sports, Fitness, Sports">
+	<meta name="viewport" content="width=device-width">
+	<title>Cheetahs Athletic Club</title>
+	<link href='https://fonts.googleapis.com/css?family=Poppins' rel="stylesheet" type="text/css" />
+	<link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet' type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style>
+		*{
+			box-sizing: border-box;
+			margin:0;
+		}
+		body{
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			width:100%;
+			font-family: 'DM Sans';
+		}
+		main{
+			flex-grow:1;
+			margin: 10px;
+			margin-left: 10%;
+			margin-right: 10%;
+		}
+		 .logo-image{
+				width: 40px;
+				height: 40px;
+				overflow: hidden;
+				margin-top: -6px;
+		}
+		nav {
+	position: fixed;
+	z-index: 999;
+	left: 0;
+	right: 0;
+	top: 0;
+	font-family: 'Montserrat', sans-serif;
+	padding: 0 5%;
+	height: 90px;
+	background-color: #ff9000;
+}
+nav .logo {
+	float: left;
+	width: 40%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	font-size: 24px;
+	color: #fff;
+}
+nav .links {
+	float: right;
+	padding: 0;
+	margin: 0;
+	width: 60%;
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+nav .links li {
+	list-style: none;
+}
+nav .links a {
+	display: block;
+	padding: 1em;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	text-decoration: none;
+}
+nav .links a.active{
+	background-color: #894F01;
+}
+#nav-toggle {
+	position: absolute;
+	top: -110px;
+}
+nav .icon-burger {
+	display: none;
+	position: absolute;
+	right: 5%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+nav .icon-burger .line {
+	width: 30px;
+	height: 5px;
+	background-color: #fff;
+	margin: 5px;
+	border-radius: 3px;
+	transition: all .3s ease-in-out;
+}
+@media screen and (max-width: 768px) {
+	nav .logo {
+		float: none;
+		width: auto;
+		justify-content: center;
+	}
+	nav .links {
+		float: none;
+		position: fixed;
+		z-index: 999;
+		left: 0;
+		right: 0;
+		top: 90px;
+		bottom: 100%;
+		width: auto;
+		height: auto;
+		flex-direction: column;
+		justify-content: space-evenly;
+		background-color: rgba(0,0,0,.8);
+		overflow: hidden;
+		box-sizing: border-box;
+		transition: all .5s ease-in-out;
+	}
+	nav .links a {
+		font-size: 20px;
+	}
+	nav :checked ~ .links {
+		bottom: 0;
+	}
+	nav .icon-burger {
+		display: block;
+	}
+	nav :checked ~ .icon-burger .line:nth-child(1) {
+		transform: translateY(10px) rotate(225deg);
+	}
+	nav :checked ~ .icon-burger .line:nth-child(3) {
+		transform: translateY(-10px) rotate(-225deg);
+	}
+	nav :checked ~ .icon-burger .line:nth-child(2) {
+		opacity: 0;
+	}
+	
+}
+
+		h1{
+			font-family: 'Poppins'; font-size: 32px;
+		}
+		p{
+			font-family: 'DM Sans';
+		}
+		/*About Us style*/
+
+		.about-container {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 40px;
+			padding: 30px;
+			margin-top: 90px;
+		}
+		.about-container span {
+			flex: 2 1 100%;
+		}
+		@media (min-width: 768px) {
+			.about-container span {
+				flex: 2 1 40%;
+			}
+		}
+		.deco-image{
+			width: 100% ;
+			display: flex;
+			flex-direction: column;
+			padding-top: 60px;
+			align-items: center;
+			position: -webkit-sticky;
+  			position: sticky;
+  			top: 90px;
+			
+		}
+
+		/*end*/
+		header{
+			background-color: #ff9000;
+			margin:0;
+			padding-left: 10px;
+			color: rgb(255, 255, 255);
+			font-family: 'Poppins';
+		}
+	/*Footer*/
+		footer{
+			background-color: #ff9000;
+			margin:0;
+			color: rgb(255, 255, 255);
+			font-family: 'Poppins';
+		}
+		footer ul{
+			list-style: none;
+		}
+		footer .social{
+			text-align: center;
+			padding-bottom: 20px;
+		}
+		footer .social a{
+			display:inline-block;
+			text-align: center;
+			margin:0 8px;
+			padding-top: 10px;
+		}
+		footer .social a:hover{
+			background-color: #894F01;
+			padding: 5px;
+			border-radius: 3px;
+		}
+		footer ul{
+			margin-top: 0;
+			padding: 0;
+			list-style: none;
+			font-size:14px;
+			line-height: 1.6;
+			margin-bottom:0;
+			text-align: center;
+			font-family: 'DM Sans';
+		}
+		footer ul li a{
+			color: white;
+			text-decoration: none;
+			opacity: 0.8;
+		}
+
+		footer ul li{
+			display: inline-block;
+			padding: 0 15px;
+		}
+		footer ul li a:hover{
+			color: #894F01;
+			
+		}
+		.copywrite{
+			font-size: 14px;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 10px;
+			text-align: center;
+		}
+	</style>
+	</head>
+
+	<body>
+		<header>
+			<nav>
+				<input id="nav-toggle" type="checkbox">
+				<div class="logo">
+				<a  href="index.html" ><img src="1080x1080 cheetahs head.png" class="logo-image" ></a>
+				</div>
+				<ul class="links">
+					<li><a href="index.html" >Home</a></li>
+					<li><a href="about.html" class="active">About</a></li>
+					<li><a href="donate.html">Donate</a></li>
+					<li><a href="product.html">Gallery</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+				<label for="nav-toggle" class="icon-burger">
+					<div class="line"></div>
+					<div class="line"></div>
+					<div class="line"></div>
+				</label>
+			</nav>
+		</header>
+	<main>
+		<div class="about-container">
+			<span>
+			<h1>About Us</h1>
+			<br>
+			<p>Cheetahs Athletic Club is a youth track athletic group based in Valencia, Trinidad and Tobago. Formerly known as Valencia Athletic Club, the club was founded by coaches Steven Duncan and Dwayne Blackman in 2009.
+				Later renamed Cheetah's Athletic Club the coaching team was joined by coach O'Neil Paponette. For the past 15 yeaars the club's purpose has been to promote youth health and fitness through the sport of track in the community of Valencia.
+				through the guidence of the coaches there are now young aspireing athletes coming out of the community of Valencia.</p><br>
+			<p>The goal of Cheetahs Athletic Club is to develop the athlete holistically. The coaches go into detail teaching athletes proper nutrtion habbits, specialized training regements, mental health awareness and the science behind it all.
+				The athletes paticipates in a myriad of activties to help build strenght and endurance on the track. We host wellness camps were athlete learn how to prepare proper meals to promote their nutrition. They also learn the ways in which the 
+				body breakes down and uses the nutients that they intake. Also the roll in which excersise may take in chaging the human body.
+			</p> <br>
+			<P>Cheetah's Athletic Club also prticipates in nation wide 5k races and Track meets. We also host an annual 5k Race in our community of Valencia. This race is open to the public and draws many participats of all ages and fitness levels.
+				This is one of the ways we have chosen to help build and support our commnuity. We also participate and donate to community projects and events. The Cheetchs Athletic Club will always do what we can to build up and enhance the Valencia community
+				and its youth.
+			</P>
+			</span>
+			<span>
+				<img class="deco-image" src="logo_cheetahs.png">
+			</span>
+		</div>
+
+	</main>
+	<footer>
+		<hr style="margin-top:10px; height:3px;border-width:0;color:white; background-color:white">
+
+			<div class="social">
+				<h5 style="padding-top: 10px;">Social Media</h5>				
+				<a href="https://www.instagram.com/cheetahs_athletic_clubtt?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram" style="font-size:30px;color:white"></i></a>
+				
+				<a href="https://www.facebook.com/groups/1433526106971126"><i class="fab fa-facebook" style="font-size:30px;color:white"></i></a>
+			</div>
+
+			<ul class="footer-list">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="about.html">About</a></li>
+			<li><a href="donate.html">Donate</a></li>
+			<li><a href="product.html">Gallery</a></li>
+			<li><a href="contact.html">Contact</a></li>	
+			</ul>
+		
+		<p class="copywrite">Cheetahs Athletic Club &copy; 2024</p>
+
+	</footer>
+	</body>
+		<script>
+		function myFunction() {
+			var x = document.getElementById("myTopnav");
+			if (x.className === "topnav") {
+				x.className += " responsive";
+			} else {
+				x.className = "topnav";
+			}
+		}
+		</script>
+
+
+</html>
